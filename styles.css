@@ -14,6 +14,13 @@
     "Helvetica Neue", sans-serif;
   --font-heading: "Montserrat", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --radius: 0.5rem;
+
+  /* Avatar background colors */
+  --blue-light: rgba(33, 150, 243, 0.15);
+  --green-light: rgba(76, 175, 80, 0.15);
+  --amber-light: rgba(255, 193, 7, 0.15);
+  --purple-light: rgba(156, 39, 176, 0.15);
+  --teal-light: rgba(0, 150, 136, 0.15);
 }
 
 * {
@@ -1000,12 +1007,41 @@ h6 {
   margin-bottom: 1rem;
 }
 
-.testimonial-avatar {
+.avatar-circle {
   width: 3rem;
   height: 3rem;
   border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid var(--primary-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--primary);
+  background-color: var(--primary-light);
+}
+
+.bg-primary-light {
+  background-color: var(--primary-light);
+}
+
+.bg-blue-light {
+  background-color: var(--blue-light);
+}
+
+.bg-green-light {
+  background-color: var(--green-light);
+}
+
+.bg-amber-light {
+  background-color: var(--amber-light);
+}
+
+.bg-purple-light {
+  background-color: var(--purple-light);
+}
+
+.bg-teal-light {
+  background-color: var(--teal-light);
 }
 
 .testimonial-name {
@@ -1043,5 +1079,102 @@ h6 {
   background-color: var(--background);
   border-radius: var(--radius);
   overflow: hidden;
+}
+
+/* About page */
+.about-image {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.about-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.about-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.about-section {
+  padding: 4rem 0;
+}
+
+.about-section.bg-muted {
+  background-color: var(--muted);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .about-grid {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+}
+
+.value-card {
+  background-color: var(--card);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  padding: 1.5rem;
+  transition: box-shadow 0.2s, transform 0.2s;
+  height: 100%;
+}
+
+.value-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transform: translateY(-2px);
+}
+
+.value-icon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background-color: var(--primary-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.value-title {
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+  font-weight: 700;
+}
+
+.value-description {
+  color: var(--muted-foreground);
+}
+
+.about-prose {
+  max-width: 65ch;
+}
+
+.about-prose p {
+  margin-bottom: 1rem;
+  color: var(--muted-foreground);
+}
+
+.about-prose h3 {
+  font-size: 1.25rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  font-weight: 700;
+}
+
+.about-cta {
+  text-align: center;
+  margin-top: 2rem;
 }
 
