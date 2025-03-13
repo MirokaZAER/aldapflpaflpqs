@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nos Services - Aviris Agency</title>
+    <meta name="description" content="Découvrez nos services professionnels pour les créatrices de contenu et les clients.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="https://raw.githubusercontent.com/MirokaZAER/AvirisAgency/main/logo.png" alt="Aviris Agency Logo" class="logo-img">
+                        <span class="logo-text">Aviris Agency</span>
+                    </a>
+                </div>
+                <nav class="main-nav">
+                    <ul class="nav-list">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="services.html" class="active">Services</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle">À propos</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="about.html">Notre agence</a></li>
+                                <li><a href="testimonials.html">Témoignages</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="header-actions">
+                    <a href="contact.html" class="btn btn-primary">Nous contacter</a>
+                </div>
+                <button class="mobile-menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header bg-muted">
+            <div class="container">
+                <h1 class="page-title">Nos Services</h1>
+                <p class="page-description">Des solutions professionnelles pour les créatrices de contenu et les clients.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Pour les Créatrices</h2>
+                    <p class="section-description">Des services dédiés pour développer votre carrière en toute sécurité.</p>
+                </div>
+                <div class="card-grid cols-3">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="service-title">Gestion de Carrière</h3>
+                        <p class="service-description">Accompagnement personnalisé, négociation de contrats, planification stratégique de votre carrière pour maximiser votre potentiel.</p>
+                        <ul class="feature-list">
+                            <li>Conseils personnalisés</li>
+                            <li>Négociation de contrats</li>
+                            <li>Planification de carrière</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                                <circle cx="12" cy="13" r="4"></circle>
+                            </svg>
+                        </div>
+                        <h3 class="service-title">Environnements Sécurisés</h3>
+                        <p class="service-description">Accès à des appartements élégants et discrets pour vos rencontres, avec présence d'un agent pour garantir votre sécurité.</p>
+                        <ul class="feature-list">
+                            <li>Lieux vérifiés</li>
+                            <li>Présence d'un agent</li>
+                            <li>Sécurité garantie</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                        </div>
+                        <h3 class="service-title">Rencontres Sécurisées</h3>
+                        <p class="service-description">Organisation et supervision des rencontres avec les clients pour garantir votre sécurité et votre confort.</p>
+                        <ul class="feature-list">
+                            <li>Vérification des clients</li>
+                            <li>Gestion des paiements</li>
+                            <li>Présence d'un coordinateur</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section bg-muted">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Pour les Clients</h2>
+                    <p class="section-description">Des services professionnels pour vos rencontres privées.</p>
+                </div>
+                <div class="card-grid cols-3">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                            </svg>
+                        </div>
+                        <h3 class="service-title">Rencontres Privées</h3>
+                        <p class="service-description">Organisation de rencontres discrètes et professionnelles avec nos créatrices sélectionnées dans des lieux élégants et privés.</p>
+                        <ul class="feature-list">
+                            <li>Sélection personnalisée</li>
+                            <li>Discrétion absolue</li>
+                            <li>Lieux de qualité</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                        </div>
+                        <h3 class="service-title">Service à Domicile</h3>
+                        <p class="service-description">Nos modèles peuvent se déplacer chez vous ou à votre hôtel. Notre agent arrive toujours en avance pour vérifier et récupérer le paiement avant la rencontre.</p>
+                        <ul class="feature-list">
+                            <li>Déplacement à domicile</li>
+                            <li>Vérification préalable</li>
+                            <li>Paiement sécurisé</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                                <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="service-title">Service Premium</h3>
+                        <p class="service-description">Accès à notre catalogue exclusif de créatrices VIP pour des expériences exceptionnelles et personnalisées.</p>
+                        <ul class="feature-list">
+                            <li>Créatrices exclusives</li>
+                            <li>Service sur mesure</li>
+                            <li>Expérience premium</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Pourquoi Choisir Nos Services</h2>
+                    <p class="section-description">Nous mettons l'accent sur la sécurité, le professionnalisme et la discrétion.</p>
+                </div>
+                <div class="card-grid cols-2">
+                    <div class="feature-card">
+                        <h3 class="feature-title">Sécurité Garantie</h3>
+                        <p class="feature-description">Toutes les rencontres sont supervisées par notre équipe. Notre agent arrive toujours en avance pour vérifier les lieux et la personne, garantissant un environnement sécurisé pour tous.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3 class="feature-title">Professionnalisme</h3>
+                        <p class="feature-description">Nos créatrices sont sélectionnées pour leur talent, leur sérieux et leur professionnalisme, garantissant des rencontres de qualité.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3 class="feature-title">Discrétion Absolue</h3>
+                        <p class="feature-description">Nous assurons une confidentialité totale pour protéger votre vie privée et votre réputation.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3 class="feature-title">Accompagnement Complet</h3>
+                        <p class="feature-description">De la première prise de contact jusqu'à la fin de la rencontre, nous vous accompagnons à chaque étape, avec un agent présent avant le rendez-vous pour gérer le paiement.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <img src="https://raw.githubusercontent.com/MirokaZAER/AvirisAgency/main/logo.png" alt="Aviris Agency Logo" class="logo-img">
+                        <span class="logo-text">Aviris Agency</span>
+                    </div>
+                    <p class="footer-text">Nous mettons en relation les créatrices de contenu avec des opportunités professionnelles de qualité.</p>
+                    <div class="footer-contact">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                            <rect height="16" rx="2" width="20" x="2" y="4"></rect>
+                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                        </svg>
+                        <span>contact@aviris.agency</span>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-heading">Liens rapides</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="about.html">À propos</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-heading">Informations légales</h3>
+                    <ul class="footer-links">
+                        <li><a href="legal.html">Mentions Légales</a></li>
+                        <li><a href="privacy.html">Politique de Confidentialité</a></li>
+                        <li><a href="terms.html">Conditions Générales</a></li>
+                        <li><a href="cookies.html">Gestion des Cookies</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-heading">Newsletter</h3>
+                    <p class="footer-text">Inscrivez-vous pour recevoir nos actualités et offres exclusives.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Votre email" required>
+                        <button type="submit" class="btn-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                                <path d="M5 12h14"></path>
+                                <path d="m12 5 7 7-7 7"></path>
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright">© 2025 Aviris Agency. Tous droits réservés.</p>
+                <p class="made-with">
+                    Conçu avec 
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon heart">
+                        <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
+                    </svg>
+                    en France
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.mobile-menu-toggle');
+            const mainNav = document.querySelector('.main-nav');
+            
+            if (menuToggle && mainNav) {
+                menuToggle.addEventListener('click', function() {
+                    mainNav.classList.toggle('active');
+                    this.classList.toggle('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+
