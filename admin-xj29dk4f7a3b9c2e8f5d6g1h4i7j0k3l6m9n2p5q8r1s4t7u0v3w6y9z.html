@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .login-container {
+      max-width: 400px;
+      margin: 100px auto;
+      padding: 2rem;
+      border-radius: var(--radius);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      background-color: white;
+    }
+    .admin-container {
+      display: none;
+      padding: 2rem;
+    }
+    .reservation-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    .reservation-table th, .reservation-table td {
+      border: 1px solid var(--border);
+      padding: 0.75rem;
+      text-align: left;
+    }
+    .reservation-table th {
+      background-color: var(--muted);
+      font-weight: 600;
+    }
+    .reservation-table tr:nth-child(even) {
+      background-color: var(--muted);
+    }
+    .status-pending {
+      color: var(--warning);
+      font-weight: 500;
+    }
+    .status-approved {
+      color: var(--success);
+      font-weight: 500;
+    }
+    .status-rejected {
+      color: var(--destructive);
+      font-weight: 500;
+    }
+    .action-buttons {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .filter-controls {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      align-items: center;
+    }
+    .search-box {
+      flex: 1;
+    }
+    .export-button {
+      margin-left: auto;
+    }
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+    .pagination button {
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background-color: white;
+      cursor: pointer;
+    }
+    .pagination button.active {
+      background-color: var(--primary);
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Formulaire de connexion -->
+    <div id="login-container" class="login-container">
+      <h2 class="text-xl font-semibold mb-4">Connexion</h2>
+      <div class="form-group">
+        <label for="username" class="font-medium">Identifiant</label>
+        <input type="text" id="username" name="username" required>
+      </div>
+      <div class="form-group">
+        <label for="password" class="font-medium">Mot de passe</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+      <button type="button" id="login-button" class="btn btn-primary w-full mt-4">Se connecter</button>
+    </div>
+
+    <!-- Interface d'administration -->
+    <div id="admin-container" class="admin-container">
+      <h1 class="text-2xl font-bold mb-6">Gestion des codes Paysafecard</h1>
+      
+      <div class="filter-controls">
+        <div class="search-box">
+          <input type="text" id="search-input" placeholder="Rechercher..." class="w-full">
+        </div>
+        <select id="status-filter">
+          <option value="all">Tous les statuts</option>
+          <option value="En attente">En attente</option>
+          <option value="Approuvé">Approuvé</option>
+          <option value="Rejeté">Rejeté</option>
+        </select>
+        <button id="export-button" class="btn btn-secondary export-button">Exporter CSV</button>
+      </div>
+      
+      <div class="table-container">
+        <table class="reservation-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Code Paysafecard</th>
+              <th>Montant</th>
+              <th>Client</th>
+              <th>Discord</th>
+              <th>Créatrice</th>
+              <th>Détails</th>
+              <th>Statut</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="reservations-table-body">
+            <!-- Les réservations seront ajoutées ici dynamiquement -->
+          </tbody>
+        </table>
+      </div>
+      
+      <div id="pagination" class="pagination">
+        <!-- Pagination générée dynamiquement -->
+      </div>
+      
+      <div class="mt-4">
+        <button id="logout-button" class="btn btn-outline">Déconnexion</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Utilisation d'un hachage SHA-256 pour le mot de passe
+      // Ces valeurs sont les hachages des identifiants, pas les identifiants eux-mêmes
+      const HASHED_USERNAME = "fae7f5de773e037ca77ed84f9669ce484c8cfb47797c06081a86e96e795f60cc"; // admin
+      const HASHED_PASSWORD = "fe671021e65ff0a91a6118d14347dc93811f0080410384fcc16f74e2b5590728"; // mot de passe complexe
+      
+      // Éléments DOM
+      const loginContainer = document.getElementById('login-container');
+      const adminContainer = document.getElementById('admin-container');
+      const loginButton = document.getElementById('login-button');
+      const logoutButton = document.getElementById('logout-button');
+      const usernameInput = document.getElementById('username');
+      const passwordInput = document.getElementById('password');
+      const reservationsTableBody = document.getElementById('reservations-table-body');
+      const searchInput = document.getElementById('search-input');
+      const statusFilter = document.getElementById('status-filter');
+      const exportButton = document.getElementById('export-button');
+      const paginationContainer = document.getElementById('pagination');
+      
+      // Variables pour la pagination
+      let currentPage = 1;
+      const itemsPerPage = 10;
+      let filteredReservations = [];
+      
+      // Fonction pour hacher une chaîne avec SHA-256
+      async function sha256(message) {
+        // Encoder comme UTF-8
+        const msgBuffer = new TextEncoder().encode(message);                    
+        // Hacher le message
+        const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+        // Convertir ArrayBuffer en tableau d'octets
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        // Convertir les octets en chaîne hexadécimale
+        const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        return hashHex;
+      }
+      
+      // Vérifier si l'utilisateur est déjà connecté
+      const authToken = sessionStorage.getItem('auth_token');
+      if (authToken) {
+        try {
+          const tokenData = JSON.parse(atob(authToken));
+          const currentTime = new Date().getTime();
+          
+          if (tokenData.expiry > currentTime) {
+            showAdminInterface();
+          } else {
+            sessionStorage.removeItem('auth_token');
+          }
+        } catch (e) {
+          sessionStorage.removeItem('auth_token');
+        }
+      }
+      
+      // Gestionnaire de connexion
+      loginButton.addEventListener('click', async function() {
+        const username = usernameInput.value;
+        const password = passwordInput.value;
+        
+        // Hacher les identifiants entrés
+        const hashedUsername = await sha256(username);
+        const hashedPassword = await sha256(password);
+        
+        // Vérifier les identifiants
+        if (hashedUsername === HASHED_USERNAME && hashedPassword === HASHED_PASSWORD) {
+          // Créer un jeton d'authentification avec expiration (24 heures)
+          const expiryTime = new Date().getTime() + (24 * 60 * 60 * 1000);
+          const tokenData = {
+            expiry: expiryTime,
+            random: Math.random().toString(36).substring(2)
+          };
+          
+          // Stocker le jeton dans sessionStorage
+          sessionStorage.setItem('auth_token', btoa(JSON.stringify(tokenData)));
+          
+          showAdminInterface();
+        } else {
+          alert('Identifiants incorrects. Veuillez réessayer.');
+        }
+      });
+      
+      // Gestionnaire de déconnexion
+      logoutButton.addEventListener('click', function() {
+        sessionStorage.removeItem('auth_token');
+        loginContainer.style.display = 'block';
+        adminContainer.style.display = 'none';
+      });
+      
+      // Fonction pour afficher l'interface d'administration
+      function showAdminInterface() {
+        loginContainer.style.display = 'none';
+        adminContainer.style.display = 'block';
+        loadReservations();
+      }
+      
+      // Fonction pour charger les réservations depuis le localStorage
+      function loadReservations() {
+        const reservations = JSON.parse(localStorage.getItem('paysafecard_reservations')) || [];
+        applyFiltersAndDisplay(reservations);
+        
+        // Ajouter des écouteurs d'événements pour les filtres
+        searchInput.addEventListener('input', function() {
+          applyFiltersAndDisplay(reservations);
+        });
+        
+        statusFilter.addEventListener('change', function() {
+          applyFiltersAndDisplay(reservations);
+        });
+        
+        // Gestionnaire pour l'exportation CSV
+        exportButton.addEventListener('click', function() {
+          exportToCSV(filteredReservations);
+        });
+      }
+      
+      // Fonction pour appliquer les filtres et afficher les réservations
+      function applyFiltersAndDisplay(reservations) {
+        const searchTerm = searchInput.value.toLowerCase();
+        const statusValue = statusFilter.value;
+        
+        // Appliquer les filtres
+        filteredReservations = reservations.filter(reservation => {
+          const matchesSearch = 
+            reservation.paysafecard_code.toLowerCase().includes(searchTerm) ||
+            reservation.client_email.toLowerCase().includes(searchTerm) ||
+            (reservation.discord && reservation.discord.toLowerCase().includes(searchTerm)) ||
+            reservation.creator.toLowerCase().includes(searchTerm);
+          
+          const matchesStatus = statusValue === 'all' || reservation.status === statusValue;
+          
+          return matchesSearch && matchesStatus;
+        });
+        
+        // Trier par date de soumission (plus récent en premier)
+        filteredReservations.sort((a, b) => new Date(b.date_soumission) - new Date(a.date_soumission));
+        
+        // Mettre à jour la pagination
+        updatePagination(filteredReservations);
+        
+        // Afficher les réservations de la page actuelle
+        displayReservations(filteredReservations);
+      }
+      
+      // Fonction pour mettre à jour la pagination
+      function updatePagination(reservations) {
+        const totalPages = Math.ceil(reservations.length / itemsPerPage);
+        paginationContainer.innerHTML = '';
+        
+        if (totalPages <= 1) return;
+        
+        // Bouton précédent
+        const prevButton = document.createElement('button');
+        prevButton.textContent = '«';
+        prevButton.disabled = currentPage === 1;
+        prevButton.addEventListener('click', () => {
+          if (currentPage > 1) {
+            currentPage--;
+            displayReservations(reservations);
+            updatePagination(reservations);
+          }
+        });
+        paginationContainer.appendChild(prevButton);
+        
+        // Pages numérotées
+        for (let i = 1; i <= totalPages; i++) {
+          const pageButton = document.createElement('button');
+          pageButton.textContent = i;
+          pageButton.classList.toggle('active', i === currentPage);
+          pageButton.addEventListener('click', () => {
+            currentPage = i;
+            displayReservations(reservations);
+            updatePagination(reservations);
+          });
+          paginationContainer.appendChild(pageButton);
+        }
+        
+        // Bouton suivant
+        const nextButton = document.createElement('button');
+        nextButton.textContent = '»';
+        nextButton.disabled = currentPage === totalPages;
+        nextButton.addEventListener('click', () => {
+          if (currentPage < totalPages) {
+            currentPage++;
+            displayReservations(reservations);
+            updatePagination(reservations);
+          }
+        });
+        paginationContainer.appendChild(nextButton);
+      }
+      
+      // Fonction pour afficher les réservations
+      function displayReservations(reservations) {
+        reservationsTableBody.innerHTML = '';
+        
+        // Calculer les indices de début et de fin pour la pagination
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const endIndex = Math.min(startIndex + itemsPerPage, reservations.length);
+        
+        // Si aucune réservation
+        if (reservations.length === 0) {
+          const emptyRow = document.createElement('tr');
+          emptyRow.innerHTML = `<td colspan="9" class="text-center">Aucune réservation trouvée</td>`;
+          reservationsTableBody.appendChild(emptyRow);
+          return;
+        }
+        
+        // Afficher les réservations de la page actuelle
+        for (let i = startIndex; i < endIndex; i++) {
+          const reservation = reservations[i];
+          const row = document.createElement('tr');
+          
+          // Formater la date
+          const submissionDate = new Date(reservation.date_soumission);
+          const formattedDate = submissionDate.toLocaleDateString('fr-FR') + ' ' + submissionDate.toLocaleTimeString('fr-FR');
+          
+          // Déterminer la classe CSS pour le statut
+          let statusClass = '';
+          switch (reservation.status) {
+            case 'En attente':
+              statusClass = 'status-pending';
+              break;
+            case 'Approuvé':
+              statusClass = 'status-approved';
+              break;
+            case 'Rejeté':
+              statusClass = 'status-rejected';
+              break;
+          }
+          
+          row.innerHTML = `
+            <td>${formattedDate}</td>
+            <td>${reservation.paysafecard_code}</td>
+            <td>${reservation.paysafecard_amount}€</td>
+            <td>${reservation.client_email}</td>
+            <td>${reservation.discord || 'Non spécifié'}</td>
+            <td>${reservation.creator}</td>
+            <td>
+              <strong>Date:</strong> ${reservation.date}<br>
+              <strong>Durée:</strong> ${reservation.duration}<br>
+              <strong>Lieu:</strong> ${reservation.location}
+            </td>
+            <td class="${statusClass}">${reservation.status}</td>
+            <td>
+              <div class="action-buttons">
+                <button class="btn btn-sm btn-primary approve-button" data-id="${reservation.id}">Approuver</button>
+                <button class="btn btn-sm btn-destructive reject-button" data-id="${reservation.id}">Rejeter</button>
+                <button class="btn btn-sm btn-outline delete-button" data-id="${reservation.id}">Supprimer</button>
+              </div>
+            </td>
+          `;
+          
+          reservationsTableBody.appendChild(row);
+        }
+        
+        // Ajouter des écouteurs d'événements pour les boutons d'action
+        addActionButtonListeners();
+      }
+      
+      // Fonction pour ajouter des écouteurs d'événements aux boutons d'action
+      function addActionButtonListeners() {
+        // Boutons d'approbation
+        document.querySelectorAll('.approve-button').forEach(button => {
+          button.addEventListener('click', function() {
+            const reservationId = parseInt(this.getAttribute('data-id'));
+            updateReservationStatus(reservationId, 'Approuvé');
+          });
+        });
+        
+        // Boutons de rejet
+        document.querySelectorAll('.reject-button').forEach(button => {
+          button.addEventListener('click', function() {
+            const reservationId = parseInt(this.getAttribute('data-id'));
+            updateReservationStatus(reservationId, 'Rejeté');
+          });
+        });
+        
+        // Boutons de suppression
+        document.querySelectorAll('.delete-button').forEach(button => {
+          button.addEventListener('click', function() {
+            const reservationId = parseInt(this.getAttribute('data-id'));
+            deleteReservation(reservationId);
+          });
+        });
+      }
+      
+      // Fonction pour mettre à jour le statut d'une réservation
+      function updateReservationStatus(reservationId, newStatus) {
+        let reservations = JSON.parse(localStorage.getItem('paysafecard_reservations')) || [];
+        
+        // Trouver et mettre à jour la réservation
+        reservations = reservations.map(reservation => {
+          if (reservation.id === reservationId) {
+            return { ...reservation, status: newStatus };
+          }
+          return reservation;
+        });
+        
+        // Sauvegarder les modifications
+        localStorage.setItem('paysafecard_reservations', JSON.stringify(reservations));
+        
+        // Recharger l'affichage
+        applyFiltersAndDisplay(reservations);
+      }
+      
+      // Fonction pour supprimer une réservation
+      function deleteReservation(reservationId) {
+        if (confirm('Êtes-vous sûr de vouloir supprimer cette réservation ?')) {
+          let reservations = JSON.parse(localStorage.getItem('paysafecard_reservations')) || [];
+          
+          // Filtrer pour supprimer la réservation
+          reservations = reservations.filter(reservation => reservation.id !== reservationId);
+          
+          // Sauvegarder les modifications
+          localStorage.setItem('paysafecard_reservations', JSON.stringify(reservations));
+          
+          // Recharger l'affichage
+          applyFiltersAndDisplay(reservations);
+        }
+      }
+      
+      // Fonction pour exporter les réservations au format CSV
+      function exportToCSV(reservations) {
+        // Définir les en-têtes CSV
+        const headers = [
+          'Date de soumission',
+          'Code Paysafecard',
+          'Montant',
+          'Email client',
+          'Discord',
+          'Créatrice',
+          'Date RDV',
+          'Durée',
+          'Lieu',
+          'Statut'
+        ];
+        
+        // Créer les lignes de données
+        const rows = reservations.map(reservation => [
+          reservation.date_soumission,
+          reservation.paysafecard_code,
+          reservation.paysafecard_amount,
+          reservation.client_email,
+          reservation.discord || '',
+          reservation.creator,
+          reservation.date,
+          reservation.duration,
+          reservation.location,
+          reservation.status
+        ]);
+        
+        // Combiner les en-têtes et les lignes
+        const csvContent = [
+          headers.join(','),
+          ...rows.map(row => row.join(','))
+        ].join('\n');
+        
+        // Créer un objet Blob et un lien de téléchargement
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.setAttribute('href', url);
+        link.setAttribute('download', `reservations_paysafecard_${new Date().toISOString().slice(0, 10)}.csv`);
+        link.style.visibility = 'hidden';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+    });
+  </script>
+</body>
+</html>
+
