@@ -1,145 +1,146 @@
-/* Style global */
-body {
-    font-family: 'Roboto', Arial, sans-serif;
+/* Global Reset */
+* {
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
-    color: #444;
-    line-height: 1.7;
+    box-sizing: border-box;
 }
 
-h1, h2 {
+/* Body & Base Styles */
+body {
     font-family: 'Roboto', sans-serif;
-    font-weight: 700;
-    margin-bottom: 20px;
+    line-height: 1.6;
+    background-color: #fafafa;
+    color: #333;
+    margin: 0;
+    padding: 0;
 }
 
-/* Header */
+/* Container for Centering Content */
+.container {
+    width: 80%;
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Header Styling */
 header {
-    background: linear-gradient(135deg, #3498db, #2ecc71);
+    background-color: #0046d6;
     color: white;
+    padding: 20px 0;
     text-align: center;
-    padding: 70px 20px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px 8px 0 0;
 }
 
 header h1 {
-    font-size: 42px;
-    margin: 0;
+    font-size: 2.5em;
+    font-weight: bold;
+    letter-spacing: 1.5px;
 }
 
-/* Main content area */
-main {
-    max-width: 1200px;
-    margin: 50px auto;
-    background-color: #fff;
-    padding: 40px 30px;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-/* Section style */
+/* Section Styling */
 section {
     margin-bottom: 40px;
+    padding: 20px;
 }
 
-section h2 {
-    font-size: 30px;
-    color: #3498db;
-    border-bottom: 3px solid #3498db;
-    padding-bottom: 10px;
-    margin-bottom: 30px;
-}
-
-/* Paragraph style */
-p {
-    font-size: 18px;
-    color: #555;
-    margin-bottom: 25px;
-    line-height: 1.8;
-}
-
-/* Lists */
-ul {
-    margin-left: 20px;
-    font-size: 18px;
-    color: #555;
-}
-
-ul li {
-    margin-bottom: 15px;
-}
-
-/* Link styles */
-a {
-    color: #3498db;
-    text-decoration: none;
+/* Section Titles */
+h2 {
+    font-size: 2em;
+    color: #0046d6;
+    margin-bottom: 10px;
     font-weight: 600;
 }
 
-a:hover {
-    text-decoration: underline;
+/* Paragraph Styling */
+p {
+    font-size: 1.1em;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 20px;
 }
 
-/* Buttons for actions (e.g., for consent or preferences) */
+/* Links and Buttons */
+a {
+    color: #0046d6;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #0031b3;
+}
+
 button {
-    background-color: #3498db;
-    color: white;
+    background-color: #0046d6;
+    color: #fff;
+    padding: 12px 24px;
     border: none;
-    padding: 10px 20px;
-    font-size: 18px;
+    border-radius: 6px;
     cursor: pointer;
-    border-radius: 8px;
-    transition: background-color 0.3s;
+    font-size: 1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: #2980b9;
+    background-color: #0031b3;
 }
 
 /* Footer */
 footer {
-    background: #2c3e50;
+    background-color: #222;
     color: #fff;
     text-align: center;
     padding: 20px 0;
-    margin-top: 50px;
-    position: relative;
-    bottom: 0;
-    width: 100%;
+    font-size: 0.9em;
+    border-radius: 0 0 8px 8px;
 }
 
-/* Footer links */
 footer a {
     color: #fff;
     text-decoration: none;
-    font-weight: bold;
+    margin: 0 10px;
 }
 
 footer a:hover {
     text-decoration: underline;
 }
 
-/* Responsive design */
-@media (max-width: 768px) {
-    header h1 {
-        font-size: 32px;
-    }
+/* Form Styles */
+form {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
 
-    main {
-        padding: 20px;
-    }
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    font-size: 1em;
+    color: #333;
+}
 
-    section h2 {
-        font-size: 26px;
-    }
+input[type="submit"] {
+    background-color: #0046d6;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    padding: 14px 24px;
+    border-radius: 6px;
+    width: 100%;
+}
 
-    p, ul {
-        font-size: 16px;
-    }
-
-    button {
-        font-size: 16px;
-        padding: 8px 16px;
-    }
+input[type="submit"]:hover {
+    background-color: #0031b3;
 }
