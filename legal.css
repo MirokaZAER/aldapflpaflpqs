@@ -1,62 +1,66 @@
-/* Style général */
+/* Style global */
 body {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    line-height: 1.6;
+    font-family: 'Roboto', Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f7f7f7;
-    color: #333;
+    background-color: #f1f1f1;
+    color: #444;
+    line-height: 1.6;
 }
 
+/* Header */
 header {
-    background-color: #2c3e50;
-    color: #ecf0f1;
+    background: linear-gradient(135deg, #3498db, #2ecc71);
+    color: #fff;
+    padding: 60px 20px;
     text-align: center;
-    padding: 30px 20px;
-    border-bottom: 2px solid #34495e;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 
 header h1 {
     margin: 0;
-    font-size: 36px;
-    letter-spacing: 1px;
+    font-size: 40px;
+    font-weight: 600;
 }
 
+/* Main content area */
 main {
-    padding: 40px 20px;
-    max-width: 900px;
-    margin: 0 auto;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    max-width: 1100px;
+    margin: 30px auto;
+    background-color: #fff;
+    padding: 40px 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
+/* Section title */
 h2 {
     font-size: 28px;
-    color: #2c3e50;
-    margin-top: 20px;
+    color: #3498db;
     border-bottom: 2px solid #3498db;
     padding-bottom: 10px;
+    margin-bottom: 20px;
 }
 
+/* Paragraph style */
 p {
     font-size: 18px;
-    margin-bottom: 20px;
     color: #555;
+    margin-bottom: 20px;
 }
 
+/* Lists */
 ul {
-    list-style-type: disc;
-    margin-left: 40px;
+    margin-left: 20px;
     font-size: 18px;
     color: #555;
 }
 
 ul li {
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 
-/* Lien */
+/* Link styles */
 a {
     color: #3498db;
     text-decoration: none;
@@ -69,25 +73,20 @@ a:hover {
 
 /* Footer */
 footer {
-    background-color: #2c3e50;
-    color: #ecf0f1;
+    background: #2c3e50;
+    color: #fff;
     text-align: center;
-    padding: 15px 20px;
+    padding: 20px 0;
     position: relative;
     bottom: 0;
     width: 100%;
-    margin-top: 40px;
-}
-
-/* Section padding */
-section {
-    margin-bottom: 30px;
+    margin-top: 50px;
 }
 
 /* Responsive design */
 @media (max-width: 768px) {
     header h1 {
-        font-size: 30px;
+        font-size: 32px;
     }
 
     main {
