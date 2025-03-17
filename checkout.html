@@ -136,48 +136,64 @@
                         </div>
 
                         <div class="card">
-                            <div class="card-content">
-                                <h2 class="text-xl font-semibold mb-4">Méthode de paiement</h2>
-                                <div class="payment-methods">
-                                    <div class="payment-method" style="display: flex; align-items: center; padding: 20px; border: 2px solid #ddd; border-radius: 10px; width: 100%; min-height: 120px;">
-                                        <input type="radio" id="payment-paypal" name="payment-method" value="paypal" checked>
-                                        <label for="payment-paypal">
-                                            <div class="payment-logo">
-                                                <img src="PayPal.png" alt="PayPal" style="width: 70px; height: auto; max-height: 50px;">
-                                            </div>
-                                            <div class="payment-info">
-                                                <h3 class="payment-title">PayPal</h3>
-                                                <p class="payment-description">Paiement sécurisé via PayPal</p>
-                                            </div>
-                                        </label>
-                                    </div>
-                                    <div class="payment-method">
-                                        <input type="radio" id="payment-paysafecard" name="payment-method" value="paysafecard" style="width: 25px; height: 25px;">
-                                        <label for="payment-paysafecard">
-                                            <div class="payment-logo">
-                                                <img src="Paysafecard.png" alt="Paysafecard" style="width: 70px; height: auto; max-height: 50px;">
-                                            </div>
-                                            <div class="payment-info">
-                                                <h3 class="payment-title">Paysafecard</h3>
-                                                <p class="payment-description">Paiement avec votre code Paysafecard</p>
-                                            </div>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="payment-form" id="paysafecard-form" style="display: none;">
-                                    <div class="form-group">
-                                        <label for="paysafecard-code" class="font-medium">Code Paysafecard</label>
-                                        <input type="text" id="paysafecard-code" name="paysafecard-code" placeholder="XXXX-XXXX-XXXX-XXXX" pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}" maxlength="19" required>
-                                        <p class="text-sm text-muted-foreground mt-2">Format: 4 groupes de 4 chiffres séparés par des tirets</p>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="paysafecard-amount" class="font-medium">Montant du code</label>
-                                        <select id="paysafecard-amount" name="paysafecard-amount">
-                                            <option value="25">25€</option>
-                                            <option value="50">50€</option>
-                                            <option value="100">100€</option>
-                                        </select>
-                                    </div>
+    <div class="card-content">
+        <h2 class="text-xl font-semibold mb-4">Méthode de paiement</h2>
+        <div class="payment-methods">
+
+            <!-- PayPal -->
+            <div class="payment-method" style="display: flex; align-items: center; padding: 20px; border: 2px solid #ddd; border-radius: 10px; width: 100%; min-height: 120px;">
+                <input type="radio" id="payment-paypal" name="payment-method" value="paypal" checked style="width: 25px; height: 25px; margin-right: 15px;">
+                <label for="payment-paypal" style="display: flex; align-items: center; width: 100%;">
+                    <div class="payment-logo" style="flex-shrink: 0; margin-right: 20px;">
+                        <img src="PayPal.png" alt="PayPal" style="width: 70px; height: auto; max-height: 50px;">
+                    </div>
+                    <div class="payment-info" style="flex-grow: 1; text-align: left;">
+                        <h3 class="payment-title">PayPal</h3>
+                        <p class="payment-description">Paiement sécurisé via PayPal</p>
+                    </div>
+                </label>
+            </div>
+
+            <!-- Paysafecard (maintenant bien encadré) -->
+            <div class="payment-method" style="display: flex; align-items: center; padding: 20px; border: 2px solid #ddd; border-radius: 10px; width: 100%; min-height: 120px;">
+                <input type="radio" id="payment-paysafecard" name="payment-method" value="paysafecard" style="width: 25px; height: 25px; margin-right: 15px;">
+                <label for="payment-paysafecard" style="display: flex; align-items: center; width: 100%;">
+                    <div class="payment-logo" style="flex-shrink: 0; margin-right: 20px;">
+                        <img src="Paysafecard.png" alt="Paysafecard" style="width: 70px; height: auto; max-height: 50px;">
+                    </div>
+                    <div class="payment-info" style="flex-grow: 1; text-align: left;">
+                        <h3 class="payment-title">Paysafecard</h3>
+                        <p class="payment-description">Paiement avec votre code Paysafecard</p>
+                    </div>
+                </label>
+            </div>
+
+        </div>
+
+        <!-- Formulaire Paysafecard (affiché seulement si Paysafecard est sélectionné) -->
+        <div class="payment-form" id="paysafecard-form" style="display: none; margin-top: 20px; padding: 15px; border: 2px solid #ddd; border-radius: 10px;">
+            <div class="form-group">
+                <label for="paysafecard-code" class="font-medium">Code Paysafecard</label>
+                <input type="text" id="paysafecard-code" name="paysafecard-code" placeholder="XXXX-XXXX-XXXX-XXXX" pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}" maxlength="19" required>
+                <p class="text-sm text-muted-foreground mt-2">Format: 4 groupes de 4 chiffres séparés par des tirets</p>
+            </div>
+            <div class="form-group">
+                <label for="paysafecard-amount" class="font-medium">Montant du code</label>
+                <select id="paysafecard-amount" name="paysafecard-amount">
+                    <option value="25">25€</option>
+                    <option value="50">50€</option>
+                    <option value="100">100€</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="client-email" class="font-medium">Votre email</label>
+                <input type="email" id="client-email" name="client-email" placeholder="Votre adresse email" required>
+                <p class="text-sm text-muted-foreground mt-2">Nécessaire pour vous contacter concernant votre réservation.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
                                     <div class="form-group">
                                         <label for="client-email" class="font-medium">Votre email</label>
                                         <input type="email" id="client-email" name="client-email" placeholder="Votre adresse email" required>
