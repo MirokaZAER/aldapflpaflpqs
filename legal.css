@@ -3,50 +3,60 @@ body {
     font-family: 'Roboto', Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f1f1f1;
+    background-color: #f4f4f4;
     color: #444;
-    line-height: 1.6;
+    line-height: 1.7;
+}
+
+h1, h2 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    margin-bottom: 20px;
 }
 
 /* Header */
 header {
     background: linear-gradient(135deg, #3498db, #2ecc71);
-    color: #fff;
-    padding: 60px 20px;
+    color: white;
     text-align: center;
+    padding: 70px 20px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 
 header h1 {
+    font-size: 42px;
     margin: 0;
-    font-size: 40px;
-    font-weight: 600;
 }
 
 /* Main content area */
 main {
-    max-width: 1100px;
-    margin: 30px auto;
+    max-width: 1200px;
+    margin: 50px auto;
     background-color: #fff;
     padding: 40px 30px;
     border-radius: 15px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Section title */
-h2 {
-    font-size: 28px;
+/* Section style */
+section {
+    margin-bottom: 40px;
+}
+
+section h2 {
+    font-size: 30px;
     color: #3498db;
-    border-bottom: 2px solid #3498db;
+    border-bottom: 3px solid #3498db;
     padding-bottom: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 /* Paragraph style */
 p {
     font-size: 18px;
     color: #555;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    line-height: 1.8;
 }
 
 /* Lists */
@@ -57,18 +67,34 @@ ul {
 }
 
 ul li {
-    margin-bottom: 12px;
+    margin-bottom: 15px;
 }
 
 /* Link styles */
 a {
     color: #3498db;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 600;
 }
 
 a:hover {
     text-decoration: underline;
+}
+
+/* Buttons for actions (e.g., for consent or preferences) */
+button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #2980b9;
 }
 
 /* Footer */
@@ -77,10 +103,21 @@ footer {
     color: #fff;
     text-align: center;
     padding: 20px 0;
+    margin-top: 50px;
     position: relative;
     bottom: 0;
     width: 100%;
-    margin-top: 50px;
+}
+
+/* Footer links */
+footer a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+footer a:hover {
+    text-decoration: underline;
 }
 
 /* Responsive design */
@@ -93,11 +130,16 @@ footer {
         padding: 20px;
     }
 
-    h2 {
-        font-size: 24px;
+    section h2 {
+        font-size: 26px;
     }
 
     p, ul {
         font-size: 16px;
+    }
+
+    button {
+        font-size: 16px;
+        padding: 8px 16px;
     }
 }
